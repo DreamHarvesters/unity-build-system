@@ -1,5 +1,7 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
@@ -13,17 +15,26 @@ namespace BuildSystem
 		[Test]
 		public void BuilderTestSimplePass()
 		{
+            Scene s = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            EditorSceneManager.SaveScene(s, "Assets/TestScene.unity", false);
+
+            System.IO.Directory.CreateDirectory("TestBuild");
+
 			Builder b = ScriptableObject.CreateInstance<Builder>();
 
             b.SetPreBuildActions(new IBuildAction[]{});
             b.SetPostBuildActions(new IBuildAction[] {});
 
 			BuildConfiguration config = ScriptableObject.CreateInstance<BuildConfiguration>();
-            config.BuildSceneList = new EditorBuildSettingsScene[] {new EditorBuildSettingsScene()};
+            config.BuildSceneList = new EditorBuildSettingsScene[] {new EditorBuildSettingsScene("Assets/TestScene.unity", true)};
             config.BuildOptions = BuildOptions.None;
             config.BuildTarget = BuildTarget.StandaloneWindows;
+            config.TargetPath = "TestBuild/TestBuild.exe";
 
             Assert.IsTrue(string.IsNullOrEmpty(b.Build(config)));
+
+            AssetDatabase.DeleteAsset("Assets/TestScene.unity");
+            System.IO.Directory.Delete("TestBuild", true);
 		}
 
 		//[Test]

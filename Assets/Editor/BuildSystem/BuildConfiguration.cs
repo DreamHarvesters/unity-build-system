@@ -37,7 +37,12 @@ namespace BuildSystem
 
             set 
             {
-                buildScenes = value; 
+                scenes = new SceneAsset[value.Length];
+
+                for (int i = 0; i < value.Length; i++)
+                {
+                    scenes[i] = AssetDatabase.LoadAssetAtPath<SceneAsset>(value[i].path);
+                }
             }
         }
 
