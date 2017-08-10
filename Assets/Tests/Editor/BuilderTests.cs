@@ -26,21 +26,21 @@ namespace BuildSystem
             Assert.IsTrue(string.IsNullOrEmpty(b.Build(config)));
 		}
 
-		[Test]
-		public void BuilderTestSimpleFail()
-		{
-			Builder b = ScriptableObject.CreateInstance<Builder>();
+		//[Test]
+		//public void BuilderTestSimpleFail()
+		//{
+		//	Builder b = ScriptableObject.CreateInstance<Builder>();
 
-			b.SetPreBuildActions(new IBuildAction[] { });
-			b.SetPostBuildActions(new IBuildAction[] { });
+		//	b.SetPreBuildActions(new IBuildAction[] { });
+		//	b.SetPostBuildActions(new IBuildAction[] { });
 
-			BuildConfiguration config = ScriptableObject.CreateInstance<BuildConfiguration>();
-			config.BuildSceneList = new EditorBuildSettingsScene[] { new EditorBuildSettingsScene() };
-			config.BuildOptions = BuildOptions.None;
-			config.BuildTarget = BuildTarget.StandaloneWindows;
+		//	BuildConfiguration config = ScriptableObject.CreateInstance<BuildConfiguration>();
+		//	config.BuildSceneList = new EditorBuildSettingsScene[] { new EditorBuildSettingsScene() };
+		//	config.BuildOptions = BuildOptions.None;
+		//	config.BuildTarget = BuildTarget.StandaloneWindows;
 
-            Assert.IsFalse(string.IsNullOrEmpty(b.Build(config)));
-		}
+  //          Assert.IsFalse(string.IsNullOrEmpty(b.Build(config)));
+		//}
 
 		[Test]
 		public void RunPreBuildActionsPass()

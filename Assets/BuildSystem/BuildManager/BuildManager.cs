@@ -28,7 +28,6 @@ namespace BuildSystem
 
         public IBuilder[] GetBuilders(string filter)
         {
-            Debug.Log(filter);
             string[] assets = AssetDatabase.FindAssets(filter);
 
             IBuilder[] builders = new IBuilder[assets.Length];
@@ -43,12 +42,12 @@ namespace BuildSystem
 
         public IBuilder GetBuilder(string name)
         {
-            string[] asset = AssetDatabase.FindAssets(name + "t:Builder");
+            string[] asset = AssetDatabase.FindAssets(name + " t:Builder");
 
             if (asset.Length == 0)
                 throw new System.Exception("Builder could not be found: " + name);
 
-            return AssetDatabase.LoadAssetAtPath<Builder>(asset[0]);
+            return AssetDatabase.LoadAssetAtPath<Builder>(AssetDatabase.GUIDToAssetPath(asset[0]));
         }
     }
 }

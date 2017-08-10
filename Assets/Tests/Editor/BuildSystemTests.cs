@@ -84,17 +84,15 @@ namespace BuildSystem
         {
             BuildManager b = new BuildManager();
 
-			AssetDatabase.CreateFolder("Assets", "TestBuilders");
-            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance("Builder"), "Assets/TestBuilders/TestBuilder1.asset");
-			AssetDatabase.CreateAsset(ScriptableObject.CreateInstance("Builder"), "Assets/TestBuilders/TestBuilder2.asset");
+            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance("Builder"), "Assets/TestBuilder1.asset");
+			AssetDatabase.CreateAsset(ScriptableObject.CreateInstance("Builder"), "Assets/TestBuilder2.asset");
 
 			AssetDatabase.Refresh();
 
             int builderCount = b.GetBuilders("TestBuilder t:Builder").Length;
 
-			AssetDatabase.DeleteAsset("Assets/TestBuilders/TestBuilder1.asset");
-			AssetDatabase.DeleteAsset("Assets/TestBuilders/TestBuilder2.asset");
-			FileUtil.DeleteFileOrDirectory("Assets/TestBuilders");
+			AssetDatabase.DeleteAsset("Assets/TestBuilder1.asset");
+			AssetDatabase.DeleteAsset("Assets/TestBuilder2.asset");
 
             Assert.AreEqual(2, builderCount);
 		}
@@ -104,15 +102,13 @@ namespace BuildSystem
         {
             BuildManager b = new BuildManager();
 
-            AssetDatabase.CreateFolder("Assets", "TestBuilders");
-            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance("Builder"), "Assets/TestBuilders/TestBuilder1.asset");
+            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance("Builder"), "Assets/TestBuilder1.asset");
 
             AssetDatabase.Refresh();
 
-            Assert.AreSame(AssetDatabase.LoadAssetAtPath("TestBuilders/TestBuilder1.asset", typeof(Builder)), b.GetBuilder("TestBuilder1"));
+            Assert.AreSame(AssetDatabase.LoadAssetAtPath("Assets/TestBuilder1.asset", typeof(Builder)), b.GetBuilder("TestBuilder1"));
 
-            AssetDatabase.DeleteAsset("Assets/TestBuilders/TestBuilder1.asset");
-            FileUtil.DeleteFileOrDirectory("Assets/TestBuilders");
+            AssetDatabase.DeleteAsset("Assets/TestBuilder1.asset");
         }
 
 
