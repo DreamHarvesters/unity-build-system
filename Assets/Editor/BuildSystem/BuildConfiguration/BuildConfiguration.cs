@@ -8,6 +8,12 @@ namespace BuildSystem
     public class BuildConfiguration : ScriptableObject, IBuildConfiguration
     {
         [SerializeField]
+        private string companyName;
+
+        [SerializeField]
+        private string applicationIdentifier;
+
+        [SerializeField]
         private string targetPath;
 
         //Allows setting scenes through the editor. Does not used in scripting, just for easy referencing.
@@ -96,6 +102,10 @@ namespace BuildSystem
 
         public void ApplyConfiguration()
         {
+            PlayerSettings.companyName = this.companyName;
+
+            PlayerSettings.applicationIdentifier = this.applicationIdentifier;
+
 			//NOTE: Should scripting symbols set before prebuild actions?
 			//Store old scripting symbols before updating them with this configuration
             prevScriptingSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(this.BuildTargetGroup);
