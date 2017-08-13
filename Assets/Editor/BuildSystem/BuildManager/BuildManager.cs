@@ -34,7 +34,7 @@ namespace BuildSystem
 
             for (int i = 0; i < assets.Length; i++)
             {
-                builders[i] = AssetDatabase.LoadAssetAtPath<Builder>(assets[i]);
+                builders[i] = GetBuilderByPath(AssetDatabase.GUIDToAssetPath(assets[i]));
             }
 
             return builders;
@@ -48,6 +48,13 @@ namespace BuildSystem
                 throw new System.Exception("Builder could not be found: " + name);
 
             return AssetDatabase.LoadAssetAtPath<Builder>(AssetDatabase.GUIDToAssetPath(asset[0]));
+        }
+
+        public IBuilder GetBuilderByPath(string path)
+        {
+            string fileName = Utils.GetFileName(path);
+
+            return GetBuilder(fileName);
         }
     }
 }

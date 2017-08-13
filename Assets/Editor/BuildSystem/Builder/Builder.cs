@@ -35,7 +35,11 @@ namespace BuildSystem
 
         public string Build(BuildConfiguration config)
         {
-            bool actionsWorked = RunPreBuildActions(onPreBuildActions);
+			string prevSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(config.BuildTargetGroup);
+
+			PlayerSettings.SetScriptingDefineSymbolsForGroup(config.BuildTargetGroup, config.ScriptingSymbols);
+
+			bool actionsWorked = RunPreBuildActions(onPreBuildActions);
 
             if(!actionsWorked)
                 Debug.LogError("Problem with pre build actions!!!");
@@ -47,6 +51,8 @@ namespace BuildSystem
 
             if(!actionsWorked)
                 Debug.LogError("Problem with post build actions!!!");
+
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(config.BuildTargetGroup, prevSymbols);
 
 			return error;
         }

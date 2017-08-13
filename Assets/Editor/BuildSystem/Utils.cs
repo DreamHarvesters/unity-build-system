@@ -12,5 +12,20 @@ namespace BuildSystem
             parentPath = path.Substring(0, path.LastIndexOf("/"));
             folderName = path.Substring(path.LastIndexOf("/") + 1);
         }
+
+        public static string GetFileName(string path, bool removeExtension = true)
+        {
+            path = path.Replace("\\", "/");
+
+            if (!path.Contains("."))
+                throw new System.Exception("The provided path does not point to a file!!\n Provided path: " + path);
+
+            string fileName = path.Substring(path.LastIndexOf("/") + 1);
+
+            if (removeExtension)
+                fileName = fileName.Remove(fileName.LastIndexOf("."));
+
+            return fileName;
+        }
 	}
 }
