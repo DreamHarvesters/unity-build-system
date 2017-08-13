@@ -5,7 +5,7 @@ using UnityEditor;
 namespace BuildSystem
 {
     [CreateAssetMenu(fileName = "Build Configuration", menuName = "Build/Create Build Configuration", order = 1)]
-    public class BuildConfiguration : ScriptableObject
+    public class BuildConfiguration : ScriptableObject, IBuildConfiguration
     {
         [SerializeField]
         private string targetPath;
@@ -17,6 +17,7 @@ namespace BuildSystem
         [SerializeField]
         private UnityEditor.BuildTarget buildTarget;
 
+        //TODO: This field may be an array to be able to define multiple options.
         [SerializeField]
         private UnityEditor.BuildOptions buildOptions;
 
@@ -24,6 +25,7 @@ namespace BuildSystem
         private string scriptingSymbols;
 
         private PlatformSpecificConfiguration platformConfig;
+        private string prevScriptingSymbols;
 
         private EditorBuildSettingsScene[] buildScenes;
         public EditorBuildSettingsScene[] BuildSceneList 
@@ -90,6 +92,25 @@ namespace BuildSystem
                         return BuildTargetGroup.Unknown;
                 }
             }
+        }
+
+        public void ApplyConfiguration()
+        {
+			//NOTE: Should scripting symbols set before prebuild actions?
+			//Store old scripting symbols before updating them with this configuration
+            prevScriptingSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(this.BuildTargetGroup);
+
+			//Update scripting symbols with the configuration
+			PlayerSettings.SetScriptingDefineSymbolsForGroup(this.BuildTargetGroup, this.ScriptingSymbols);
+
+			platformConfig.ApplyConfiguration();
+        }
+
+        public void RevertConfiguration()
+        {
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(this.BuildTargetGroup, prevScriptingSymbols);
+
+            platformConfig.RevertConfiguration();
         }
     }
 }

@@ -3,8 +3,9 @@ using System.Collections;
 
 namespace BuildSystem
 {
-    public class PlatformSpecificConfiguration : ScriptableObject
+    public class PlatformSpecificConfiguration : ScriptableObject, IBuildConfiguration
     {
-        public virtual void SetupConfiguration(){}
+        public virtual void ApplyConfiguration(){}
+        public virtual void RevertConfiguration(){}
     }
 }

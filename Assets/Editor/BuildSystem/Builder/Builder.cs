@@ -40,25 +40,17 @@ namespace BuildSystem
             if(!actionsWorked)
                 Debug.LogError("Problem with pre build actions!!!");
 
-            //NOTE: Should scripting symbols set before prebuild actions?
-            //Store old scripting symbols before updating them with this configuration
-			string prevSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(config.BuildTargetGroup);
-
-            //Update scripting symbols with the configuration
-			PlayerSettings.SetScriptingDefineSymbolsForGroup(config.BuildTargetGroup, config.ScriptingSymbols);
-
-            config.PlatformConfiguration.SetupConfiguration();
+            config.ApplyConfiguration();
 
             string error = BuildPipeline.BuildPlayer(config.BuildSceneList, config.TargetPath,
                                       config.BuildTarget, config.BuildOptions);
+
+            config.RevertConfiguration();
 
             actionsWorked = RunPostBuildActions(onPostBuildActions);
 
             if(!actionsWorked)
                 Debug.LogError("Problem with post build actions!!!");
-
-            //Revert scripting symbols to the value before this build process
-			PlayerSettings.SetScriptingDefineSymbolsForGroup(config.BuildTargetGroup, prevSymbols);
 
 			return error;
         }

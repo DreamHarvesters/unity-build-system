@@ -5,7 +5,7 @@ namespace BuildSystem
 {
     public class AndroidConfiguration : PlatformSpecificConfiguration
 	{
-        public override void SetupConfiguration()
+        public override void ApplyConfiguration()
         {
             throw new System.NotImplementedException();
         }
