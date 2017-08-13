@@ -23,6 +23,8 @@ namespace BuildSystem
         [SerializeField]
         private string scriptingSymbols;
 
+        private PlatformSpecificConfiguration platformConfig;
+
         private EditorBuildSettingsScene[] buildScenes;
         public EditorBuildSettingsScene[] BuildSceneList 
         { 
@@ -53,6 +55,16 @@ namespace BuildSystem
         public BuildTarget BuildTarget { get { return buildTarget; } set { buildTarget = value; }}
         public BuildOptions BuildOptions { get { return buildOptions; } set { buildOptions = value; }}
         public string ScriptingSymbols { get { return scriptingSymbols; } set { scriptingSymbols = value; }}
+        public PlatformSpecificConfiguration PlatformConfiguration 
+        { 
+            get 
+            {
+                if (platformConfig == null)
+                    platformConfig = ScriptableObject.CreateInstance<PlatformSpecificConfiguration>();
+
+                return platformConfig; 
+            }
+        }
         public BuildTargetGroup BuildTargetGroup
         {
             get
