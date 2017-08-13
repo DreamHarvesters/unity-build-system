@@ -113,14 +113,14 @@ namespace BuildSystem
 			//Update scripting symbols with the configuration
 			PlayerSettings.SetScriptingDefineSymbolsForGroup(this.BuildTargetGroup, this.ScriptingSymbols);
 
-			platformConfig.ApplyConfiguration();
+            this.PlatformConfiguration.ApplyConfiguration();
         }
 
         public void RevertConfiguration()
         {
             PlayerSettings.SetScriptingDefineSymbolsForGroup(this.BuildTargetGroup, prevScriptingSymbols);
 
-            platformConfig.RevertConfiguration();
+            this.PlatformConfiguration.RevertConfiguration();
         }
     }
 }
