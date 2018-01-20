@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEditor;
@@ -25,7 +26,7 @@ namespace BuildSystem
 
         //TODO: This field may be an array to be able to define multiple options.
         [SerializeField]
-        private UnityEditor.BuildOptions buildOptions;
+        private UnityEditor.BuildOptions[] buildOptions;
 
         [SerializeField]
         private string scriptingSymbols;
@@ -61,7 +62,20 @@ namespace BuildSystem
 
         public string TargetPath { get { return targetPath; } set { targetPath = value; }}
         public BuildTarget BuildTarget { get { return buildTarget; } set { buildTarget = value; }}
-        public BuildOptions BuildOptions { get { return buildOptions; } set { buildOptions = value; }}
+
+        public BuildOptions BuildOptions
+        {
+            get
+            {
+                BuildOptions compiledOptions = BuildOptions.None;
+                for (int i = 0; i < buildOptions.Length; i++)
+                {
+                    compiledOptions |= buildOptions[i];
+                }
+                
+                return compiledOptions;
+            }
+        }
         public string ScriptingSymbols { get { return scriptingSymbols; } set { scriptingSymbols = value; }}
         public PlatformSpecificConfiguration PlatformConfiguration 
         { 
@@ -85,7 +99,7 @@ namespace BuildSystem
                     case BuildTarget.StandaloneOSXIntel:
                     case BuildTarget.StandaloneWindows64:
                     case BuildTarget.StandaloneOSXIntel64:
-                    case BuildTarget.StandaloneOSXUniversal:
+                    case BuildTarget.StandaloneOSX:
                     case BuildTarget.StandaloneLinuxUniversal:
                         return BuildTargetGroup.Standalone;
                     case BuildTarget.Android:
@@ -121,6 +135,11 @@ namespace BuildSystem
             PlayerSettings.SetScriptingDefineSymbolsForGroup(this.BuildTargetGroup, prevScriptingSymbols);
 
             this.PlatformConfiguration.RevertConfiguration();
+        }
+
+        public void SetBuildOptions(params BuildOptions[] buildOptions)
+        {
+            this.buildOptions = buildOptions;
         }
     }
 }

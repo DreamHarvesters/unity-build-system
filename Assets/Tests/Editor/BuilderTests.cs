@@ -27,7 +27,7 @@ namespace BuildSystem
 
 			BuildConfiguration config = ScriptableObject.CreateInstance<BuildConfiguration>();
             config.BuildSceneList = new EditorBuildSettingsScene[] {new EditorBuildSettingsScene("Assets/TestScene.unity", true)};
-            config.BuildOptions = BuildOptions.None;
+            config.SetBuildOptions(BuildOptions.None);
             config.BuildTarget = BuildTarget.StandaloneWindows;
             config.TargetPath = "TestBuild/TestBuild.exe";
 

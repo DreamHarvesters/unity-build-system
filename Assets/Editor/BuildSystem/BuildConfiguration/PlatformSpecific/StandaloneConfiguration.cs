@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace BuildSystem
 {
-    public class StandalonConfiguration : PlatformSpecificConfiguration
+    public class StandaloneConfiguration : PlatformSpecificConfiguration
 	{
         public override void ApplyConfiguration()
         {
