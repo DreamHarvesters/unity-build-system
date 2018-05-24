@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace BuildSystem
 {
-    [CreateAssetMenu(menuName = "Build/Actions/Move Folders Action", fileName = "Move Folders", order = 1)]
+    [CreateAssetMenu(menuName = "DH/Build/Actions/Move Folders Action", fileName = "Move Folders", order = 1)]
     public class MoveFolders : ScriptableObject, IBuildAction
     {
         [SerializeField]

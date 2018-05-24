@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace BuildSystem
 {
-    [CreateAssetMenu(fileName = "Build Configuration", menuName = "Build/Create Build Configuration", order = 1)]
+    [CreateAssetMenu(fileName = "Build Configuration", menuName = "DH/Build/Create Build Configuration", order = 1)]
     public class BuildConfiguration : ScriptableObject, IBuildConfiguration
     {
         [SerializeField]
@@ -24,7 +24,6 @@ namespace BuildSystem
         [SerializeField]
         private UnityEditor.BuildTarget buildTarget;
 
-        //TODO: This field may be an array to be able to define multiple options.
         [SerializeField]
         private UnityEditor.BuildOptions[] buildOptions;
 
@@ -114,7 +113,7 @@ namespace BuildSystem
             }
         }
 
-        public void ApplyConfiguration()
+        public virtual void ApplyConfiguration()
         {
             PlayerSettings.companyName = this.companyName;
 
@@ -130,7 +129,7 @@ namespace BuildSystem
             this.PlatformConfiguration.ApplyConfiguration();
         }
 
-        public void RevertConfiguration()
+        public virtual void RevertConfiguration()
         {
             PlayerSettings.SetScriptingDefineSymbolsForGroup(this.BuildTargetGroup, prevScriptingSymbols);
 

@@ -4,7 +4,7 @@ using UnityEditor;
 
 namespace BuildSystem
 {
-    [CreateAssetMenu(menuName = "Build/Create Builder", fileName = "Builder", order = 1)]
+    [CreateAssetMenu(menuName = "DH/Build/Create Builder", fileName = "Builder", order = 1)]
     public class Builder : ScriptableObject, IBuilder
     {
         private IBuildAction[] onPreBuildActions;
