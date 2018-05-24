@@ -4,3 +4,6 @@ Library/
 *.userprefs
 .DS_Store
 Temp/
+Assets/Plugins/Editor/JetBrains
+Assets/Plugins/Editor/JetBrains.meta
+.idea/
