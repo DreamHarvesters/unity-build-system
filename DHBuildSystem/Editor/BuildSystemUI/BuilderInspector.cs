@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     [CustomEditor(typeof(Builder))]
     public class BuilderInspector : Editor

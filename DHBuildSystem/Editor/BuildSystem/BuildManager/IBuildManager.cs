@@ -1,5 +1,5 @@
 ﻿
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     public interface IBuildManager
     {

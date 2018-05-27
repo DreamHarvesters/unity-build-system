@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System.Collections;
 using NSubstitute;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     public class BuildSystemTests
     {

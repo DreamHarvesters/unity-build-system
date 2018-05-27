@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     public class iOSConfiguration : PlatformSpecificConfiguration
 	{

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     [CreateAssetMenu(menuName = "DH/Build/Actions/Move Folders Action", fileName = "Move Folders", order = 1)]
     public class MoveFolders : ScriptableObject, IBuildAction

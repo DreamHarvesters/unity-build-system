@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     [CreateAssetMenu(fileName = "AndroidBuildConfiguration", menuName = "DH/Build/Platform Build Configuration/Android",
         order = 0)]

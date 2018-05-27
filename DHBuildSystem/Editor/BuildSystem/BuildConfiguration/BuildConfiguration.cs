@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     [CreateAssetMenu(fileName = "Build Configuration", menuName = "DH/Build/Create Build Configuration", order = 1)]
     public class BuildConfiguration : ScriptableObject, IBuildConfiguration

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     public class UtilTest
     {

@@ -7,7 +7,7 @@ using NUnit.Framework;
 using System.Collections;
 using NSubstitute;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
 	public class BuilderTests
 	{
@@ -36,22 +36,6 @@ namespace BuildSystem
             AssetDatabase.DeleteAsset("Assets/TestScene.unity");
             System.IO.Directory.Delete("TestBuild", true);
 		}
-
-		//[Test]
-		//public void BuilderTestSimpleFail()
-		//{
-		//	Builder b = ScriptableObject.CreateInstance<Builder>();
-
-		//	b.SetPreBuildActions(new IBuildAction[] { });
-		//	b.SetPostBuildActions(new IBuildAction[] { });
-
-		//	BuildConfiguration config = ScriptableObject.CreateInstance<BuildConfiguration>();
-		//	config.BuildSceneList = new EditorBuildSettingsScene[] { new EditorBuildSettingsScene() };
-		//	config.BuildOptions = BuildOptions.None;
-		//	config.BuildTarget = BuildTarget.StandaloneWindows;
-
-  //          Assert.IsFalse(string.IsNullOrEmpty(b.Build(config)));
-		//}
 
 		[Test]
 		public void RunPreBuildActionsPass()

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     [CreateAssetMenu(menuName = "DH/Build/Create Builder", fileName = "Builder", order = 1)]
     public class Builder : ScriptableObject, IBuilder

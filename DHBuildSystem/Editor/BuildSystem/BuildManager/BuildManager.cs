@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
     public class BuildManager : IBuildManager
     {

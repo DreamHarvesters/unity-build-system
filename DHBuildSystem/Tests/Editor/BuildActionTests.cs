@@ -4,7 +4,7 @@ using UnityEngine.TestTools;
 using UnityEditor;
 using NUnit.Framework;
 
-namespace BuildSystem
+namespace DH.BuildSystem
 {
 	public class BuildActionTests
 	{
