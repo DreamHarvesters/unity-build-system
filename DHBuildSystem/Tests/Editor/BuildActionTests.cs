@@ -32,5 +32,11 @@ namespace DH.BuildSystem
 
             Assert.IsTrue(result);
         }
+
+		[Test]
+		public void ReplaceFile_Pass()
+		{
+			
+		}
 	}
 }
